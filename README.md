@@ -1,4 +1,6 @@
 Koebe_Embedding
 ===============
 
-Keobe Embedding
+Koebe Embedding
+
+Implementation of the Koebe Embedding (Circle Packing) algorithm.
