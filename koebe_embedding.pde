@@ -7,8 +7,12 @@ PFont f;
 int typing;
 
 // Variable to store saved text when return is hit
+<<<<<<< HEAD
 int savedV;
 int savedE;
+=======
+int saved;
+>>>>>>> parent of 0c3ebdb... update user keyboard input
 
 void setup() {
   size(640,360);
@@ -40,7 +44,11 @@ void draw() {
 void keyPressed() {
   // If the return key is pressed, save the String and clear it
   if (key == '\n' ) {
+<<<<<<< HEAD
     savedV = typing;
+=======
+    saved = typing;
+>>>>>>> parent of 0c3ebdb... update user keyboard input
     // A String can be cleared by setting it equal to ""
     //typing = ""; 
   } else {
