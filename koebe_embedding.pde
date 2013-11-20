@@ -9,6 +9,7 @@ int typing;
 // Variable to store saved text when return is hit
 int saved;
 
+
 void setup() {
   size(640,360);
   f = createFont("Arial",16,true);
@@ -37,13 +38,15 @@ void keyPressed() {
   // If the return key is pressed, save the String and clear it
   if (key == '\n' ) {
     saved = typing;
-    // A String can be cleared by setting it equal to ""
-    //typing = ""; 
-  } else {
-    // Otherwise, concatenate the String
-    // Each character typed by the user is added to the end of the String variable.
-    typing = typing + key; 
-  }
+    typing = 0;
+  // Handles proper numeric key inputs
+  } else if ((key >= '0' && key <= '9')){
+      typing = (typing*10) + (key-48);
+  // Handles the backspace key to delete previous input
+  } else if (key== 8){
+      typing = typing/10; 
+  // Handles all other key inputs
+  } else {}
 }
 
 //stroke(255);
