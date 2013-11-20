@@ -7,8 +7,8 @@ PFont f;
 int typing;
 
 // Variable to store saved text when return is hit
-int saved;
-
+int savedV;
+int savedE;
 
 void setup() {
   size(640,360);
@@ -18,18 +18,21 @@ void setup() {
 void draw() {
   background(255);
   int indent = 25;
+  int[] coordinates = new int [4];
   
   // Set the font and fill for text
   textFont(f);
   fill(0);
   
   // Display everything
-  text("Click in this applet and type coordinates of input graph. \nHit return to save what you typed. ", indent, 40);
-  text(typing,indent,90);
-  text(saved,indent,130);
-  int[] coordinates = new int [4];
-  coordinates[1] = saved;
-  coordinates[2] = saved;
+  while (savedV!=-1 || savedE!=-1) {
+    int i=0;
+    text("V"+i+" = . \nHit return to save what you typed. ", indent, 40);
+    text(typing,indent,90);
+    text(savedV,indent,130);
+  }
+  coordinates[1] = savedV;
+  coordinates[2] = savedV;
   stroke(0, 153, 255);
   point(coordinates[1], coordinates[2]);
 }
@@ -37,16 +40,14 @@ void draw() {
 void keyPressed() {
   // If the return key is pressed, save the String and clear it
   if (key == '\n' ) {
-    saved = typing;
-    typing = 0;
-  // Handles proper numeric key inputs
-  } else if ((key >= '0' && key <= '9')){
-      typing = (typing*10) + (key-48);
-  // Handles the backspace key to delete previous input
-  } else if (key== 8){
-      typing = typing/10; 
-  // Handles all other key inputs
-  } else {}
+    savedV = typing;
+    // A String can be cleared by setting it equal to ""
+    //typing = ""; 
+  } else {
+    // Otherwise, concatenate the String
+    // Each character typed by the user is added to the end of the String variable.
+    typing = typing + key; 
+  }
 }
 
 //stroke(255);
