@@ -127,8 +127,8 @@ void makeCircles() {
   circleList = new vertex[numVerts];
 
   for (int h = 0; h < numVerts; h++) {
-    //circleList[h] = new vertex(vertices[h].x, vertices[h].y, randoms[h]);
-    circleList[h] = new vertex(vertices[h].x, vertices[h].y, 300);
+    circleList[h] = new vertex(vertices[h].x, vertices[h].y, randoms[h]);
+    //   circleList[h] = new vertex(vertices[h].x, vertices[h].y, 300);
   }
   IntVertices();
   while (!isPacked ()) {
@@ -142,12 +142,12 @@ void makeCircles() {
 void IntVertices() {
   interiorV = new vertex[0];
   exteriorV = new vertex[0];
-  
-  
+
+
   for (int i = 0; i<circleList.length; i++) {
     //   circleList[i].addFaces(findFaces(circleList[i]));
- //   float x = circleList[i].getAngleSum();
- float x = getAngleSum(circleList[i]);
+    //   float x = circleList[i].getAngleSum();
+    float x = getAngleSum(circleList[i]);
     println("angle " + x);
     circleList[i].updateAngleSum(x);
     if (circleList[i].interior) {
@@ -167,15 +167,18 @@ void IntVertices() {
 
 public float computeRadii(vertex v) {
   //FOR EVERY *INTERIOR* VERTEX
-  // 1.COMPUTE THE INTERIOR ANGLE SUM USING THE LAW OF COSINES
-  //  v.addFaces(findFaces(v));
-  float angleSum = getAngleSum(v);
   float prediction = 0;
-  // 2.ADJUST THE RADIUS TO DECREASE THE DIFFERENCE
-  if (TWO_PI != angleSum) {
-    prediction = predictNextRadius(v, angleSum);
+  for ( int i=0; i<interiorV.length; i++) {
+    // 1.COMPUTE THE INTERIOR ANGLE SUM USING THE LAW OF COSINES
+    //  v.addFaces(findFaces(v));
+    float angleSum = getAngleSum(v);
 
-    // v.r =prediction;
+    // 2.ADJUST THE RADIUS TO DECREASE THE DIFFERENCE
+    if (TWO_PI != angleSum) {
+      prediction = predictNextRadius(v, angleSum);
+
+      //      v.r =prediction;
+    }
   }
   return prediction;
 }
@@ -237,12 +240,12 @@ Face[] findFaces(vertex vert) {
 }
 
 public float getAngleSum(vertex v) {
-    float angleSum = 0;
-    for (int i =0; i<faces.length; i++) {                        
-      angleSum += faces[i].getAngle(v);
-    }
-    return angleSum;
+  float angleSum = 0;
+  for (int i =0; i<faces.length; i++) {                        
+    angleSum += faces[i].getAngle(v);
   }
+  return angleSum;
+}
 
 
 void VertexInput() {

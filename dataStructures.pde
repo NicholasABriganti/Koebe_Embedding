@@ -38,14 +38,15 @@ public class vertex {
     angle=0;
     angle += x;
     if (TWO_PI - angle < error)
-    this.interior=true;
+      this.interior=true;
   }
-  
-  void updateRadii(float rad){
-      }
+
+  void updateRadii(float rad) {
+    this.r=rad;
+  }
 
   void addFace(Face f) {
-    faces = (Face[])append(faces,f);
+    faces = (Face[])append(faces, f);
   }
 
   public float getAngleSum() {
@@ -65,7 +66,6 @@ public class vertex {
 public class halfEdge {
   vertex origin;
   vertex dest;
-  vertex face;
   halfEdge prev;
   halfEdge next;
   halfEdge twin;
@@ -77,13 +77,6 @@ public class halfEdge {
     origin = new vertex(x1, y1);
     dest = new vertex(x2, y2);
 
-    float valX = x2 - x1;
-    float valY = y2 - y1;
-
-    float temp = valX * (-1);
-    float faceY = y1 + temp;
-    float faceX = x1 + valY;
-    face = new vertex((int)faceX, (int)faceY);
     this.display();
   } 
 
@@ -91,13 +84,6 @@ public class halfEdge {
     origin = start;
     dest = end;
 
-    float valX = dest.x - origin.x;
-    float valY = dest.y - origin.y;
-
-    float temp = valX * (-1);
-    float faceY = origin.y + temp;
-    float faceX = origin.x + valY;
-    face = new vertex( (int)faceX, (int)faceY);
     this.display();
   }
   void display() {
