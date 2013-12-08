@@ -3,10 +3,12 @@ public class vertex {
   float x;
   float y;
   float r;
+  int id;
   vertex[] neighbors;
   Face[] faces;
   boolean interior;
   float angle;
+  
 
   public vertex(int vertX, int vertY) {
     this.x = vertX;
@@ -22,6 +24,16 @@ public class vertex {
     this.y = y;
     this.r = r;
     this.angle=0;
+    neighbors = new vertex[0];
+    interior = false;
+    faces = new Face[0];
+    ellipse(x, y, r, r);
+  }
+  
+  public vertex(int id, float r) {
+    this.r = r;
+    this.angle=0;
+    this.id = id;
     neighbors = new vertex[0];
     interior = false;
     faces = new Face[0];

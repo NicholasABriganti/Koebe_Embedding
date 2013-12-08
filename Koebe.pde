@@ -16,14 +16,14 @@ boolean Fm=false;
 int arrayPointer = 0;
 int EPointer = 0;
 int FPointer = 0;
-vertex[] vertices = new vertex[100];
+vertex[] vertices = new vertex[7];
 vertex vert;
 vertex vert2;
 vertex vert3;
-halfEdge[] hEdge = new halfEdge[100];
+halfEdge[] hEdge = new halfEdge[12];
 halfEdge hE;
-int numEdges = 0;
-int numVerts = 0;
+int numEdges = 12;
+int numVerts = 7;
 int mouseCount = 0;
 boolean xInput = true;
 boolean endInput;
@@ -53,7 +53,7 @@ void draw() {
   // Set the font and fill for text
   textFont(f);
   fill(0);
-
+/*
   // Display everything
   if (endInput==false && endEInput==false) {
     VertexInput();
@@ -65,20 +65,21 @@ void draw() {
     FaceInput();
   }
   else {
+    */
     if (mouseCount %3 == 0) {
-      DrawVertex();
+//      DrawVertex();
       DrawEdge();
     }
     else if (mouseCount %3 == 1)
       DrawCircles();
     else {
       DrawCircles();
-      DrawVertex();
+//      DrawVertex();
       DrawEdge();
     }
   }
-}
 
+/*
 void DrawVertex() {
   int i=0;
   ellipseMode(CENTER);
@@ -88,6 +89,7 @@ void DrawVertex() {
     i++;
   }
 }
+*/
 
 void DrawEdge() {
   stroke(255, 255, 255);
@@ -206,6 +208,20 @@ float predictNextRadius(vertex v, float angleSum) {
   return newRadius;
 }
 
+public float getAngleSum(vertex v) {
+  float angleSum = 0;
+  for (int i =0; i<faces.length; i++) {                        
+    angleSum += faces[i].getAngle(v);
+  }
+  return angleSum;
+}
+
+void mousePressed() {
+  mouseCount++;
+  loop();
+}
+
+/*
 Face[] findFaces(vertex[] vert) {
   int i=0;
   while (vert[i] != null) {
@@ -239,15 +255,11 @@ Face[] findFaces(vertex vert) {
   return faces;
 }
 
-public float getAngleSum(vertex v) {
-  float angleSum = 0;
-  for (int i =0; i<faces.length; i++) {                        
-    angleSum += faces[i].getAngle(v);
-  }
-  return angleSum;
-}
+*/
 
 
+
+/*
 void VertexInput() {
   if (xInput==true && endInput==false) {
     text("Type the coordinates of the vertices for input graph between 0 and " + width + ". Enter '/' to end input.\nType X coordinate", indent, 40);
@@ -422,12 +434,10 @@ void saveVertex() {
     xInput=true;
   }
 }
+*/
 
-void mousePressed() {
-  mouseCount++;
-  loop();
-}
 
+/*
 void saveFace() {
   if (Fs==true && Fm==false) {
     vX=vXtyping;
@@ -475,4 +485,5 @@ void saveEdge() {
     Es= true;
   }
 }
+*/
 
