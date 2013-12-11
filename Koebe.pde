@@ -48,7 +48,6 @@ void draw() {
 
 void drawFaces() {
   for (int i =0; i<interiorV[0].faces.length;i++) {
-    // for (int i =0; i==0;i++) {
     line(interiorV[0].faces[i].vertexList[0].x, interiorV[0].faces[i].vertexList[0].y, interiorV[0].faces[i].vertexList[1].x, interiorV[0].faces[i].vertexList[1].y);
     line(interiorV[0].faces[i].vertexList[1].x, interiorV[0].faces[i].vertexList[1].y, interiorV[0].faces[i].vertexList[2].x, interiorV[0].faces[i].vertexList[2].y);
     line(interiorV[0].faces[i].vertexList[2].x, interiorV[0].faces[i].vertexList[2].y, interiorV[0].faces[i].vertexList[0].x, interiorV[0].faces[i].vertexList[0].y);
@@ -63,25 +62,18 @@ void drawCircles() {
   fill(138, 43, 226);
 
   findFaces(interiorV);
-  // fixInitialFace(interiorV[0].faces[0]);
-  //interiorV[0].faces=(Face[])append(interiorV[0].faces, interiorV[0].faces[0]);
   fixOtherFaces(interiorV[0].faces);
   text("Click the mouse to step through algorithm", indent, 20);
-  computeRadii();
+
 
 
   for (int i=0; i<vertices.length; i++) {
     vertex temp = vertices[i];
     ellipse(temp.x, temp.y, 2*temp.r, 2*temp.r);
-    println("drawing vertex "+ temp.id+ " at" +temp.x +"'"+ temp.y);
+    println("drawing vertex "+ temp.id+ " at " +temp.x +","+ temp.y);
   }
 
-  /*
-  for (int k =0; k<interiorV[0].faces.length;k++) {
-   println(interiorV[0].faces[k].vertexList[0].id);
-   println(interiorV[0].faces[k].vertexList[1].id);
-   println(interiorV[0].faces[k].vertexList[2].id);
-   } */
+  computeRadii();
 }
 
 void fixOtherFaces(Face[] face) {
@@ -173,7 +165,6 @@ void computeRadii() {
       for (int k =0; k<vertices.length; k++) {
         vertices[k].vertexSet=false;
       }
-      //    fixOtherFaces(interiorV[i].faces);
     }
   }
 }
@@ -316,6 +307,8 @@ void saveInter() {
   vXtyping=0;
   vertices[vX].interior=true;
   vert = vertices[vX];
+  float inrad = 50;
+  vert.updateRadius(inrad);
   interiorV = (vertex[])append(interiorV, vert);
 }
 

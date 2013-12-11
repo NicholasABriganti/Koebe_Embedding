@@ -13,7 +13,6 @@ public class vertex {
 
   public vertex(int ident) {
     this.id=ident;
-    //this.r=random(10, 100);
     this.r = 100;
     this.angle=0;
     neighbors = new vertex[0];
@@ -85,12 +84,7 @@ public class halfEdge {
 
   public halfEdge() {
   }
-  /*
-  public halfEdge( int x1, int y1, int x2, int y2) {
-   origin = new vertex(x1, y1);
-   dest = new vertex(x2, y2);
-   } 
-   */
+
   public halfEdge( vertex start, vertex end) {
     origin = start;
     dest = end;
@@ -121,9 +115,7 @@ public class Face {
     float radiusA = temp[0];
     float radiusB = temp[1];
 
-    float num = pow(center.r + radiusA, 2) 
-      + pow(center.r+ radiusB, 2) 
-        - pow(radiusA + radiusB, 2);
+    float num = pow(center.r + radiusA, 2) + pow(center.r+ radiusB, 2) - pow(radiusA + radiusB, 2);
     float den = 2*(center.r + radiusA)*(center.r + radiusB);
 
     return acos(num/den);
